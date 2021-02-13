@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- jquery -->
+    <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>对话</title>
+</head>
+
+<body>
+    <div class="wapper">
+        <div class="container center-vertical" id="chat">
+            <div class="total-head">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <!-- title -->
+                <p>泡泡小仙女</p>
+                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+            </div>
+            <div class="dialog"></div>
+            <div class="bottom">
+                <button class="btn btn-info" id="left_btn"></button>
+                <button class="btn btn-info" id="right_btn"></button>
+            </div>
+        </div>
+    </div>
+
+    <template id="dialog_template">
+        <div>
+            <div id="wapper">
+                <img src="./images/logo.png" alt="" class="head">
+                <div id="talk"></div>
+            </div>
+        </div>
+    </template>
+</body>
+
+<!-- 引入类 -->
+<script src="./js/PlotNode.js"></script>
+<script>
+
+    let allPlotQueues = new Map();
+    let currentQueueId = 1; //当前剧情队列id
+    let currentPlotId = 0; //当前剧情id
+    let animating = false; //是否正在显示
+
+    // 开始
+    window.onload = () => {
+        // 取消注释，在msg处导入json
+        let msg = {"0":{"plotArray":[],"id":"0","keyNode":{"id":-1,"content":"请刷新页面重新开始游戏","leftOption":"拜拜~","rightOption":"拜拜~","leftNext":"0","rightNext":"0"}},"1":{"plotArray":[],"id":"1","keyNode":{"id":-1,"content":"欢迎来到游戏（男友去哪儿了）。/n\n请选择你的角色","leftOption":"女友","rightOption":"陌生人","leftNext":"2","rightNext":"999"}},"2":{"plotArray":[],"id":"2","keyNode":{"id":-1,"content":"您的职业是（女友） /n\n是否开始冒险。","leftOption":"我还需要等一会","rightOption":"是","leftNext":"998","rightNext":"3"}},"3":{"plotArray":[{"id":0,"content":"早上一起床，你发现你的男友突然消失了！ /n\n你会去哪里找他呢？","leftOption":"厨房","rightOption":"厕所"}],"id":"3","keyNode":{"id":-1,"content":"你过去一看，发现你的男友一脸深沉的站在那里。 /n\n你仿佛瞟见一个黑色的身影从你身后一闪而过，当你回头看时，男友一把抱住了你 /n\n之后一言不发的独自走了。","leftOption":"上去拉住他","rightOption":"莫名其妙","leftNext":"4","rightNext":"997"}},"4":{"plotArray":[],"id":"4","keyNode":{"id":-1,"content":"你愣了一会，在后面叫住了他 /n\n 可他还是头也不回的跑走了。这时候你选择","leftOption":"他可能来姨夫了，不管他","rightOption":"去找他！","leftNext":"997","rightNext":"5"}},"5":{"plotArray":[],"id":"5","keyNode":{"id":-1,"content":"\n你仔细思考了一番，决定先去他家调查一番。 /n\n这是你第一次来到他家，你站在他家门前。","leftOption":"万一家长在怎么办……","rightOption":"硬着头皮敲门。","leftNext":"997","rightNext":"6"}},"6":{"plotArray":[{"id":0,"content":"你过去敲了门，却发现门开着。","leftOption":"走进去","rightOption":"走进去"},{"id":1,"content":"你凭着感觉来到了他的房间，发现他的桌上摊着笔记本。","leftOption":"翻看","rightOption":"翻看"},{"id":2,"content":"上面写着：“不要来找我！”","leftOption":"……","rightOption":"……"}],"id":"6","keyNode":{"id":-1,"content":"你经过了一番深思熟虑，决定……","leftOption":"听他的，先放放吧","rightOption":"不行！继续找","leftNext":"997","rightNext":"7"}},"7":{"plotArray":[{"id":0,"content":"你决定继续搜索线索，你在他的床底下发现了一个水晶球 /n在球里的影像里看见了你们经常去的公园","leftOption":"去公园","rightOption":"去公园"},{"id":1,"content":"你来到了水晶球中显示的地方，看见他站在那里，你问到","leftOption":"这是怎么回事？","rightOption":"你去干嘛了？"},{"id":2,"content":"“我这是在救你。”","leftOption":"？？？","rightOption":"？？？"},{"id":3,"content":"“这是一个神秘人给我的水晶球，他说这个水晶球可以预知未来，但是只有一次机会……”","leftOption":"然后呢？","rightOption":"你预知了什么？"},{"id":4,"content":"“我选择了预知我们的未来，于是我在球里看到了未来我们婚后出去旅游时出了车祸，你英年早逝”","leftOption":"……","rightOption":"……"}],"id":"7","keyNode":{"id":-1,"content":"“我决定要阻止这一切的发生”/n …… /n“我们结束吧。”","leftOption":"……那好吧","rightOption":"不，我不相信","leftNext":"997","rightNext":"8"}},"8":{"plotArray":[{"id":0,"content":"“我这是为你好……”","leftOption":"一个破球就把你动摇了？","rightOption":"一个破球的话你也信？"},{"id":1,"content":"“唉，由不得我不信啊”","leftOption":"……","rightOption":"……"},{"id":2,"content":"这时候，一个黑色人影突然出现，说道：“我是一个死神” /n“如果我说球里发生的都是真的，你还会继续爱他吗？”","leftOption":"嗯，大不了以后不去旅游了","rightOption":"……没有什么难关是我们携手度过不了的"},{"id":3,"content":"“哈哈哈哈哈，恭喜你们通过了我对你们的考验……”","leftOption":"……","rightOption":"？？？"},{"id":4,"content":"“很久没有遇到像你们这样的情侣的，祝福你们，你们将会白头偕老。”","leftOption":"我还没反应过来……","rightOption":"……谢谢"},{"id":5,"content":"“哈哈哈哈，不打扰你们了，再见” /n说完，人影逐渐消失。\n\n“宝贝……我……”","leftOption":"不用多说，我们回家吧 /n","rightOption":"嘘……我们回家吧"}],"id":"8","keyNode":{"id":-1,"content":"\n在回去的路上。\n /n\n“我有话想对你说……”","leftOption":"我也有话想对你说 /n 那我先说","rightOption":"我也有话想对你说 /n 那你先说","leftNext":"9","rightNext":"10"}},"9":{"plotArray":[],"id":"9","keyNode":{"id":-1,"content":"好……那你说吧","leftOption":"我要带你去见家长","rightOption":"我要带你去见家长","leftNext":"11","rightNext":"11"}},"10":{"plotArray":[],"id":"10","keyNode":{"id":-1,"content":"我想带你去见见爸妈……","leftOption":"嗯……好","rightOption":"你抢我台词！","leftNext":"11","rightNext":"11"}},"11":{"plotArray":[],"id":"11","keyNode":{"id":-1,"content":"两人在见过家长后，不久就结婚了 /n\n\n从此，两人过上了幸福快乐的日子。","leftOption":"HappyEnding","rightOption":"HappyEnding","leftNext":"11","rightNext":"11"}},"997":{"plotArray":[],"id":"997","keyNode":{"id":-1,"content":"你失去了你男友的消息。","leftOption":"重新开始","rightOption":"重新开始","leftNext":"997","rightNext":"997"}},"998":{"plotArray":[],"id":"998","keyNode":{"id":-1,"content":"你的男友在你等待时被别人拐走了。","leftOption":"……","rightOption":"……","leftNext":"998","rightNext":"998"}},"999":{"plotArray":[],"id":"999","keyNode":{"id":-1,"content":"对不起，这里不欢迎陌生人。","leftOption":"拜拜~","rightOption":"拜拜~","leftNext":"0","rightNext":"0"}}};
+        localStorage.setItem('data', JSON.stringify(msg));
+        init();
+    }
+
+    //显示内容逻辑
+    function showContent(leftOrRight) {
+        console.log(animating);
+        if (animating) return;  //如果正在显示，直接返回
+        let dialog = document.querySelector('.dialog');
+        let left_btn = document.getElementById('left_btn');
+        let right_btn = document.getElementById('right_btn');
+
+        // 得到当前节点
+        let currentQueue = allPlotQueues.get(currentQueueId);
+        if (!currentQueue) {
+            return;
+        }
+        // 取得当前节点,让id+1
+        let currentPlot = currentQueue.getPlotNode(currentPlotId);
+        let nextPlot;
+        // 判断当前节点是否是关键节
+        if (currentPlot.id == -1) {
+            //如果是左边，让当前剧情id等于leftNext,反之亦然。
+            leftOrRight === 'left' ?
+                currentQueueId = parseInt(currentPlot.leftNext) :
+                currentQueueId = parseInt(currentPlot.rightNext);
+            currentPlotId = 0;
+            // 获得下个节点，若没有下个节点，则返回
+            if (allPlotQueues.get(currentQueueId)) {
+                nextPlot = allPlotQueues.get(currentQueueId).getPlotNode(currentPlotId);
+            } else {
+                alert('已到达最后。');
+            }
+        } else {
+            currentPlotId++;
+            // 否则获得下个节点
+            nextPlot = currentQueue.getPlotNode(currentPlotId);
+        }
+        // 显示对话
+        let rightDialog;  //创建右侧对话框
+        leftOrRight == 'left' ?
+            rightDialog = createDialog('right', currentPlot.leftOption) :
+            rightDialog = createDialog('right', currentPlot.rightOption);
+
+        // showDialog(rightDialog);
+        // 按钮变化
+        if (nextPlot) {
+            let leftDialog = createDialog('left', nextPlot.content);  //创建左侧对话框
+
+
+            // 先显示右边，再显示左边
+            race(rightDialog).then(() => {
+                return race(leftDialog)
+            }).then(() => {
+                left_btn.textContent = nextPlot.leftOption; //设置左按钮
+                right_btn.textContent = nextPlot.rightOption; //设置右按钮
+                animating = false;
+            })
+        }
+    }
+
+    // 初始化结构
+    function init() {
+        if (!localStorage.data) {
+            alert('没有数据');
+            return;
+        }
+        console.log(localStorage.data)
+        let tempAllPlotQueues = objToStrMap(JSON.parse(localStorage.data));
+        for (let plotqueue of tempAllPlotQueues.entries()) {
+            // console.log(plotqueue)
+            // 新建关键节点
+            let key = plotqueue[1].keyNode;
+            let keyId = key.id;
+            let keyContent = key.content;
+            let leftOption = getChoice(key.leftNext, key.leftOption);
+            let rightOption = getChoice(key.rightNext, key.rightOption);
+            let keynode = new KeyNode(keyId, keyContent, leftOption, rightOption);
+            // 新建剧情节点
+            let plotqueues = [];
+            for (let i = 0; i < plotqueue[1].plotArray.length; i++) {
+                let temp = plotqueue[1].plotArray[i];
+                let plot = new PlotNode(temp.id, temp.content, temp.leftOption, temp.rightOption);
+                plotqueues.push(plot)
+            }
+            let queue = new PlotQueue(plotqueue[0], plotqueues, keynode);
+            allPlotQueues.set(parseInt(plotqueue[0]), queue);
+        }
+
+        // for (let [k, v] of allPlotQueues.entries()) {
+        //     console.log(k, v)
+        // }
+
+        // 开始初始化界面按钮
+        let dialog = document.querySelector('.dialog');
+        let left_btn = document.getElementById('left_btn');
+        let right_btn = document.getElementById('right_btn');
+        console.log(allPlotQueues);
+        if (!allPlotQueues.get(1)) {
+            alert('未找到首节点,请确认剧本中存在id为1的队列');
+            return;
+        }
+        let first_node = allPlotQueues.get(1).getPlotNode(0);
+
+        let plots_nodes = createDialog('left', first_node.content);
+        // 显示开头
+        race(plots_nodes).then(() => {
+            // 更换按钮上的字
+            left_btn.textContent = first_node.leftOption;
+            right_btn.textContent = first_node.rightOption;
+            animating = false;
+        })
+    }
+
+
+    // 按钮点击事件冒泡
+    document.getElementById('chat').addEventListener('click', function (event) {
+        switch (event.target.id) {
+            case 'left_btn':
+                showContent('left')
+                break;
+            case 'right_btn':
+                showContent('right')
+                break;
+        }
+    })
+
+
+    // 新建对话框
+    function createDialog(direction, content) {
+        // 去掉重复的空格
+        // content = content.replace(/\s+/g, " ");
+        // let plots = content.trim().split(" ");
+
+        // 按照/n划分
+        let plots = content.trim().split("/n");
+        let dialogs;
+        if ('content' in document.createElement('template')) {
+            dialogs = plots.map(plot => {
+                let template = document.importNode(document.getElementById('dialog_template').content, true);
+                template.querySelector('#wapper').className = direction + '-person';
+                template.querySelector('#talk').textContent = plot;
+                template.querySelector('img').setAttribute('src', `./images/${direction}_head.png`);
+                return template;
+            });
+        } else {
+            dialogs = plots.map(plot => {
+                let temp = document.createElement('div');
+                temp.innerHTML =
+                    `
+                <div class="${direction}-person">
+                    <img src="./images/${direction}_head.png" alt="">
+                    <div>${plot}</div>
+                </div>
+            `;
+                return temp;
+            });
+        }
+
+        return dialogs;
+    }
+
+    function race(arr) {
+        animating = true;
+        let dialog = document.querySelector('.dialog');
+
+        var promise = new Promise(function (resolve, reject) {
+            let interval = setInterval(() => {
+                // 添加节点
+                dialog.appendChild(arr.shift());
+                // 将界面拉倒底部
+                dialog.scrollTop = dialog.scrollHeight;
+                // 结束返回
+                if (arr.length <= 0) {
+                    clearInterval(interval);
+                    resolve();
+                }
+            }, 1000);
+        })
+        return promise;
+    }
+
+    // 对象转化为map
+    function objToStrMap(obj) {
+        let strMap = new Map();
+        for (let k of Object.keys(obj)) {
+            strMap.set(k, obj[k]);
+        }
+        return strMap;
+    }
+
+    // 媒体查询
+    // return: true 是pc ， false 是移动设备
+    function mediaQueries() {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+        }
+        return flag;
+    }
+</script>
+
+</html>
