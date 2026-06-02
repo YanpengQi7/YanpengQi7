@@ -16,6 +16,14 @@ An incident-response copilot that turns production alerts, logs, and on-call not
 
 **Stack:** Next.js 16, TypeScript, Vercel AI SDK, DeepSeek, Supabase, Postgres, pgvector, Zod
 
+### SRE Investigator
+
+[Repository](https://github.com/YanpengQi7/sre-investigator)
+
+A personal Claude Code skill for MCP-assisted SRE investigation. MCP-agnostic — it discovers whatever MCP tools are exposed, classifies them by capability, queries read-only evidence, and keeps evidence separate from inference. A small companion tool to the Reliability Copilot for day-to-day on-call work.
+
+**Stack:** Claude Code skill, MCP protocol, prompt design
+
 ### Study Abroad Platform
 
 [Repository](https://github.com/YanpengQi7/study-abroad-platform)
