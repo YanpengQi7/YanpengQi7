@@ -1,72 +1,113 @@
-# Yanpeng Qi
+<h1 align="center">Hi, I'm Yanpeng 👋</h1>
 
-Software Development Engineer building production AI systems, RAG pipelines, agent workflows, and full-stack products.
+<p align="center">
+  <b>SDE building production AI systems — RAG pipelines, agent workflows, and full-stack products.</b><br/>
+  <sub>Based in Greater Seattle · Turning ambiguous problems into reliable, evaluated systems.</sub>
+</p>
 
-I like turning ambiguous product and infrastructure problems into working systems: reliable backend services, practical AI tools, and polished user-facing experiences. My recent work focuses on AI applications that are structured, evaluated, and useful beyond the demo.
+<p align="center">
+  <a href="https://yanpengqi.com"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-yanpengqi.com-0A0A0A?style=for-the-badge&logo=vercel&logoColor=white"></a>
+  <a href="https://yanpengqi.com/blog"><img alt="Blog" src="https://img.shields.io/badge/Blog-Read-1F6FEB?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
+  <a href="https://www.linkedin.com/in/yanpeng-qi"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+  <a href="https://yanpengqi.com/cv"><img alt="CV" src="https://img.shields.io/badge/CV-View-2EA44F?style=for-the-badge&logo=readdotcv&logoColor=white"></a>
+</p>
 
-[Portfolio](https://yanpengqi.com) · [Projects](https://yanpengqi.com/projects) · [Blog](https://yanpengqi.com/blog) · [CV](https://yanpengqi.com/cv) · [LinkedIn](https://www.linkedin.com/in/yanpeng-qi)
+---
 
-## Featured Work
+### 🛠️ Tech I reach for
 
-### AI Reliability Copilot
+<p>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Postgres-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/pgvector-336791?style=flat-square&logo=postgresql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vercel-000?style=flat-square&logo=vercel&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Anthropic-D97757?style=flat-square&logo=anthropic&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vercel%20AI%20SDK-000?style=flat-square&logo=vercel&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MCP-6E56CF?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"/>
+</p>
 
-[Repository](https://github.com/YanpengQi7/ai-reliability-copilot) · [Live demo](https://ai-reliability-copilot.vercel.app)
+---
 
-An incident-response copilot that turns production alerts, logs, and on-call notes into a structured reliability report. It includes a 9-section output schema, scenario library, bilingual output, internal knowledge-base retrieval, similar-incident search, and an evaluation pipeline for prompt regression testing.
+### 🚀 Featured Projects
 
-**Stack:** Next.js 16, TypeScript, Vercel AI SDK, DeepSeek, Supabase, Postgres, pgvector, Zod
+<table>
+<tr>
+<td width="50%" valign="top">
 
-### SRE Investigator
+#### 🛡️ [AI Reliability Copilot](https://github.com/YanpengQi7/ai-reliability-copilot)
+[![Demo](https://img.shields.io/badge/Live-Demo-success?style=flat-square)](https://ai-reliability-copilot.vercel.app)
 
-[Repository](https://github.com/YanpengQi7/sre-investigator)
+Turns production alerts and on-call notes into a structured **9-section reliability report** — severity, root cause, mitigation, postmortem. Ships with a 5-scenario regression suite + LLM-as-judge eval pipeline.
 
-A personal Claude Code skill for MCP-assisted SRE investigation. MCP-agnostic — it discovers whatever MCP tools are exposed, classifies them by capability, queries read-only evidence, and keeps evidence separate from inference. A small companion tool to the Reliability Copilot for day-to-day on-call work.
+`Next.js 16` · `TS` · `Vercel AI SDK` · `DeepSeek` · `pgvector`
 
-**Stack:** Claude Code skill, MCP protocol, prompt design
+</td>
+<td width="50%" valign="top">
 
-### Study Abroad Platform
+#### 🔍 [SRE Investigator](https://github.com/YanpengQi7/sre-investigator)
 
-[Repository](https://github.com/YanpengQi7/study-abroad-platform)
+MCP-agnostic SRE skill for Claude Code — discovers whatever MCP tools are exposed, classifies them by capability, queries read-only evidence, and **keeps evidence separate from inference**.
 
-A full-stack study-abroad product for Chinese students and consultants, covering student profiles, school/program matching, booking workflows, payments, document review, and an admin dashboard.
+`Claude Code Skill` · `MCP` · `Prompt design`
 
-**Stack:** React, TypeScript, Node.js, Express, Supabase/PostgreSQL, authentication, CI/CD
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
 
-### My Notes
+#### 🎓 [Study Abroad Platform](https://github.com/YanpengQi7/study-abroad-platform)
 
-[Repository](https://github.com/YanpengQi7/my-notes) · [Live demo](https://my-notes-self.vercel.app)
+Full-stack product for students & consultants: school matching, consultant booking, document review, payments, admin workflows.
 
-A note-taking app with authentication, rich text editing, code editing, image upload, realtime search, and Supabase-backed persistence.
+`React` · `TS` · `Node` · `Supabase` · `Postgres`
 
-**Stack:** React, JavaScript, Supabase Auth, Supabase Storage, PostgreSQL
+</td>
+<td width="50%" valign="top">
 
-## What I Build Around
+#### 📝 [My Notes](https://github.com/YanpengQi7/my-notes)
+[![Demo](https://img.shields.io/badge/Live-Demo-success?style=flat-square)](https://my-notes-self.vercel.app)
 
-- Production AI applications with clear schemas, evals, retrieval, and provider routing
-- Backend systems on AWS, serverless platforms, Postgres, Redis, and event-driven workflows
-- Full-stack products with React, Next.js, TypeScript, Tailwind CSS, and Supabase
-- Engineering tools that compress repetitive work without hiding important judgment
+Notes app with auth, rich-text + code editor, image upload, realtime search, Supabase-backed persistence.
 
-## Writing
+`React` · `Supabase Auth` · `Storage` · `Postgres`
 
-I write about practical AI engineering, retrieval quality, model routing, agent evaluation, infrastructure tradeoffs, and product-minded engineering:
+</td>
+</tr>
+</table>
 
-- [RAG quality is mostly retrieval design](https://yanpengqi.com/blog/rag-quality-is-mostly-retrieval-design)
-- [Agent systems need evals before they need more tools](https://yanpengqi.com/blog/agent-systems-need-evals-before-they-need-more-tools)
-- [Model routing is a product decision, not just an optimization](https://yanpengqi.com/blog/model-routing-is-a-product-decision-not-just-an-optimization)
-- [Capacity planning for AI products starts with traffic shape](https://yanpengqi.com/blog/capacity-planning-for-ai-products-starts-with-traffic-shape)
+---
 
-## Current Direction
+### 📊 GitHub Stats
 
-I am especially interested in AI systems that are:
+<p align="center">
+  <img height="165" src="https://github-readme-stats.vercel.app/api?username=YanpengQi7&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&theme=transparent&icon_color=1F6FEB&title_color=1F6FEB"/>
+  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=YanpengQi7&layout=compact&hide_border=true&theme=transparent&title_color=1F6FEB&langs_count=8"/>
+</p>
 
-- grounded in real data and operational context
-- observable enough to debug when the model is wrong
-- evaluated with repeatable scenarios instead of only manual inspection
-- useful to engineers, students, operators, and domain experts doing real work
+---
 
-## Contact
+### ✍️ Recent Writing
 
-- Portfolio: [yanpengqi.com](https://yanpengqi.com)
-- GitHub: [github.com/YanpengQi7](https://github.com/YanpengQi7)
-- LinkedIn: [linkedin.com/in/yanpeng-qi](https://www.linkedin.com/in/yanpeng-qi)
+- 📖 [RAG quality is mostly retrieval design](https://yanpengqi.com/blog/rag-quality-is-mostly-retrieval-design)
+- 📖 [Agent systems need evals before they need more tools](https://yanpengqi.com/blog/agent-systems-need-evals-before-they-need-more-tools)
+- 📖 [Model routing is a product decision, not just an optimization](https://yanpengqi.com/blog/model-routing-is-a-product-decision-not-just-an-optimization)
+- 📖 [Capacity planning for AI products starts with traffic shape](https://yanpengqi.com/blog/capacity-planning-for-ai-products-starts-with-traffic-shape)
+
+---
+
+### 🌱 Now
+
+- Building **eval-first AI tooling** — repeatable scenarios > manual inspection
+- Exploring **MCP** as a substrate for SRE / on-call workflows
+- Open to chat about: production LLM systems, RAG quality, agent evals, AI infra
+
+📬 Reach me at **[yanpengqi.com](https://yanpengqi.com)** · [LinkedIn](https://www.linkedin.com/in/yanpeng-qi)
+
+<sub><i>"AI systems should be grounded in real data, observable when the model is wrong, and evaluated with repeatable scenarios."</i></sub>
