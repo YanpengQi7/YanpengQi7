@@ -1,14 +1,15 @@
 <h1 align="center">Hi, I'm Yanpeng 👋</h1>
 
 <p align="center">
-  <b>SDE building production AI systems — RAG pipelines, agent workflows, and full-stack products.</b><br/>
-  <sub>Based in Greater Seattle · Turning ambiguous problems into reliable, evaluated systems.</sub>
+  <b>SDE building production AI systems — RAG pipelines, agent workflows, full-stack products, and practical AI engineering playbooks.</b><br/>
+  <sub>Based in Greater Seattle · Turning ambiguous problems into reliable, evaluated systems and reusable learning resources.</sub>
 </p>
 
 <p align="center">
   <a href="https://yanpengqi.com"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-yanpengqi.com-0A0A0A?style=for-the-badge&logo=vercel&logoColor=white"></a>
   <a href="https://yanpengqi.com/blog"><img alt="Blog" src="https://img.shields.io/badge/Blog-Read-1F6FEB?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
   <a href="https://www.linkedin.com/in/yanpeng-qi"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+  <a href="https://github.com/YanpengQi7/awesome-ai-application-engineer"><img alt="AI Engineer Roadmap" src="https://img.shields.io/badge/AI%20Engineer-Roadmap-6E56CF?style=for-the-badge&logo=github&logoColor=white"></a>
   <a href="https://yanpengqi.com/cv"><img alt="CV" src="https://img.shields.io/badge/CV-View-2EA44F?style=for-the-badge&logo=readdotcv&logoColor=white"></a>
 </p>
 
@@ -41,6 +42,15 @@
 <tr>
 <td width="50%" valign="top">
 
+#### 📚 [Awesome AI Application Engineer](https://github.com/YanpengQi7/awesome-ai-application-engineer)
+
+Chinese AI application engineering roadmap from LLM basics to Prompt, RAG, Agent, MCP, evaluation, production, interview prep, plus hands-on tutorials, checklists, templates, and RAG bad cases.
+
+`LLM` · `RAG` · `Agent` · `MCP` · `Evaluation` · `Production`
+
+</td>
+<td width="50%" valign="top">
+
 #### 🛡️ [AI Reliability Copilot](https://github.com/YanpengQi7/ai-reliability-copilot)
 [![Demo](https://img.shields.io/badge/Live-Demo-success?style=flat-square)](https://ai-reliability-copilot.vercel.app)
 
@@ -49,6 +59,8 @@ Turns production alerts and on-call notes into a structured **9-section reliabil
 `Next.js 16` · `TS` · `Vercel AI SDK` · `DeepSeek` · `pgvector`
 
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 
 #### 🔍 [SRE Investigator](https://github.com/YanpengQi7/sre-investigator)
@@ -58,8 +70,6 @@ MCP-agnostic SRE skill for Claude Code — discovers whatever MCP tools are expo
 `Claude Code Skill` · `MCP` · `Prompt design`
 
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 
 #### 🎓 [Study Abroad Platform](https://github.com/YanpengQi7/study-abroad-platform)
@@ -67,16 +77,6 @@ MCP-agnostic SRE skill for Claude Code — discovers whatever MCP tools are expo
 Full-stack product for students & consultants: school matching, consultant booking, document review, payments, admin workflows.
 
 `React` · `TS` · `Node` · `Supabase` · `Postgres`
-
-</td>
-<td width="50%" valign="top">
-
-#### 📝 [My Notes](https://github.com/YanpengQi7/my-notes)
-[![Demo](https://img.shields.io/badge/Live-Demo-success?style=flat-square)](https://my-notes-self.vercel.app)
-
-Notes app with auth, rich-text + code editor, image upload, realtime search, Supabase-backed persistence.
-
-`React` · `Supabase Auth` · `Storage` · `Postgres`
 
 </td>
 </tr>
@@ -106,8 +106,9 @@ Notes app with auth, rich-text + code editor, image upload, realtime search, Sup
 ### 🌱 Now
 
 - Building **eval-first AI tooling** — repeatable scenarios > manual inspection
+- Maintaining **Awesome AI Application Engineer** — a practical roadmap for Chinese developers learning production LLM apps
 - Exploring **MCP** as a substrate for SRE / on-call workflows
-- Open to chat about: production LLM systems, RAG quality, agent evals, AI infra
+- Open to chat about: production LLM systems, RAG quality, agent evals, MCP, AI infra
 
 📬 Reach me at **[yanpengqi.com](https://yanpengqi.com)** · [LinkedIn](https://www.linkedin.com/in/yanpeng-qi)
 
