@@ -6,10 +6,6 @@ on:
     - cron: "30 0 * * *"
   # 允许手动触发
   workflow_dispatch:
-  # 推送到 README 时也刷新
-  push:
-    branches:
-      - main
 
 permissions:
   contents: write
