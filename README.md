@@ -87,9 +87,10 @@ Notes app with auth, rich-text + code editor, image upload, realtime search, Sup
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=YanpengQi7&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&theme=transparent&icon_color=1F6FEB&title_color=1F6FEB"/>
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=YanpengQi7&layout=compact&hide_border=true&theme=transparent&title_color=1F6FEB&langs_count=8"/>
+  <img alt="GitHub metrics" src="https://raw.githubusercontent.com/YanpengQi7/YanpengQi7/main/github-metrics.svg"/>
 </p>
+
+<sub align="center">Self-hosted via <a href="https://github.com/lowlighter/metrics">lowlighter/metrics</a> — refreshed daily by GitHub Actions, served straight from this repo (no rate-limited third-party instance).</sub>
 
 ---
 
