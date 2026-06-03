@@ -1,0 +1,45 @@
+name: GitHub Metrics
+
+on:
+  # 每天刷新一次（UTC 00:30）
+  schedule:
+    - cron: "30 0 * * *"
+  # 允许手动触发
+  workflow_dispatch:
+  # 推送到 README 时也刷新
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate metrics
+        uses: lowlighter/metrics@latest
+        with:
+          # 需要在仓库 Settings → Secrets → Actions 添加 METRICS_TOKEN
+          # 一个 classic PAT，勾选 scope: repo, read:user（私有贡献统计需要）
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: YanpengQi7
+          filename: github-metrics.svg
+          template: classic
+          base: header, activity, community, repositories, metadata
+          config_timezone: America/Los_Angeles
+
+          # 语言占比（替代原来的 top-langs 卡）
+          plugin_languages: yes
+          plugin_languages_analysis_timeout: 15
+          plugin_languages_categories: markup, programming
+          plugin_languages_colors: github
+          plugin_languages_limit: 8
+          plugin_languages_recent_categories: markup, programming
+          plugin_languages_sections: most-used
+          plugin_languages_threshold: 0%
+
+          # 总体 commit/issue/PR 等统计（替代原来的 stats 卡）
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
