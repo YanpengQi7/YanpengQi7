@@ -72,11 +72,11 @@ MCP-agnostic SRE skill for Claude Code — discovers whatever MCP tools are expo
 </td>
 <td width="50%" valign="top">
 
-#### 🎓 [Study Abroad Platform](https://github.com/YanpengQi7/study-abroad-platform)
+#### 🧠 [mcp-recall](https://github.com/YanpengQi7/mcp-recall)
 
-Full-stack product for students & consultants: school matching, consultant booking, document review, payments, admin workflows.
+Local-first **structured memory** for Claude Code over MCP — hybrid retrieval (vector KNN + BM25 fused with **Reciprocal Rank Fusion**), local embeddings, recency-decay ranking, dedup guard. No API keys; nothing leaves the machine.
 
-`React` · `TS` · `Node` · `Supabase` · `Postgres`
+`MCP` · `sqlite-vec` · `Hybrid Retrieval` · `Local Embeddings`
 
 </td>
 </tr>
