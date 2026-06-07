@@ -1,8 +1,9 @@
 <h1 align="center">Hi, I'm Yanpeng 👋</h1>
 
 <p align="center">
-  <b>SDE building production AI systems — RAG pipelines, agent workflows, full-stack products, and practical AI engineering playbooks.</b><br/>
-  <sub>Based in Greater Seattle · Turning ambiguous problems into reliable, evaluated systems and reusable learning resources.</sub>
+  <b>SDE building production AI systems — RAG pipelines, agent workflows, and full-stack products.</b><br/>
+  <b>Eval-first: I measure my AI systems, then I measure the evals themselves.</b><br/>
+  <sub>Based in Greater Seattle · Turning ambiguous problems into reliable, <i>verified</i> systems — and publishing what the numbers actually say.</sub>
 </p>
 
 <p align="center">
@@ -36,27 +37,42 @@
 
 ---
 
-### 🚀 Featured Projects
+### 🚀 Featured Project
+
+#### 🛡️ [AI Reliability Copilot](https://github.com/YanpengQi7/ai-reliability-copilot) &nbsp; [![Demo](https://img.shields.io/badge/Live-Demo-success?style=flat-square)](https://ai-reliability-copilot.vercel.app)
+
+Turns a production incident — alerts, logs, on-call notes — into a structured **9-section reliability report** (severity, ranked root-cause hypotheses, mitigation with rollback, postmortem). Ships as a web app, an **MCP server**, and a **CLI**.
+
+But the product isn't the point — **the eval pipeline is**: every prompt change is scored by an LLM-as-judge across a fixed scenario suite, with repeats and error bars. I treat my own AI like a system under test, and I publish what the numbers say even when it's unflattering:
+
+> 📉 **Found that prompt v1 / v2 / v3 differences were statistical noise**, not improvement — the within-cell std was larger than every between-version delta. Caught myself before shipping a "+0.16 quality win" that was sampling noise.
+>
+> 🔬 **Cross-checked the judge against an independent model** (DeepSeek-judges-DeepSeek vs. Claude Sonnet 4.6). The same-family judge inflates overall scores by **+0.24 / 5 (~5%)** — concentrated in the *soft* dimensions (actionability, completeness), **zero on safety** (90% exact agreement). I had *guessed* 10–20%; measuring showed I'd overestimated.
+
+`Next.js 16` · `TypeScript` · `Vercel AI SDK` · `DeepSeek` · `Supabase / pgvector` · `MCP` · `Cross-model eval`
+
+---
+
+### 🧰 More Projects
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-#### 📚 [Awesome AI Application Engineer](https://github.com/YanpengQi7/awesome-ai-application-engineer)
+#### 🧠 [mcp-recall](https://github.com/YanpengQi7/mcp-recall)
 
-Chinese AI application engineering roadmap from LLM basics to Prompt, RAG, Agent, MCP, evaluation, production, interview prep, plus hands-on tutorials, checklists, templates, and RAG bad cases.
+Local-first **structured memory** for Claude Code over MCP — hybrid retrieval (vector KNN + BM25 fused with **Reciprocal Rank Fusion**), local embeddings, recency-decay ranking, dedup guard. No API keys; nothing leaves the machine.
 
-`LLM` · `RAG` · `Agent` · `MCP` · `Evaluation` · `Production`
+`MCP` · `sqlite-vec` · `Hybrid Retrieval` · `Local Embeddings`
 
 </td>
 <td width="50%" valign="top">
 
-#### 🛡️ [AI Reliability Copilot](https://github.com/YanpengQi7/ai-reliability-copilot)
-[![Demo](https://img.shields.io/badge/Live-Demo-success?style=flat-square)](https://ai-reliability-copilot.vercel.app)
+#### 📚 [Awesome AI Application Engineer](https://github.com/YanpengQi7/awesome-ai-application-engineer)
 
-Turns production alerts and on-call notes into a structured **9-section reliability report** — severity, root cause, mitigation, postmortem. Ships with a 5-scenario regression suite + LLM-as-judge eval pipeline.
+A practical AI application engineering roadmap — LLM basics → Prompt, RAG, Agent, MCP, evaluation, production — with hands-on tutorials, checklists, templates, and real RAG bad cases.
 
-`Next.js 16` · `TS` · `Vercel AI SDK` · `DeepSeek` · `pgvector`
+`LLM` · `RAG` · `Agent` · `MCP` · `Evaluation` · `Production`
 
 </td>
 </tr>
@@ -72,11 +88,11 @@ MCP-agnostic SRE skill for Claude Code — discovers whatever MCP tools are expo
 </td>
 <td width="50%" valign="top">
 
-#### 🧠 [mcp-recall](https://github.com/YanpengQi7/mcp-recall)
+#### 🗺️ [ServiceAtlas](https://github.com/YanpengQi7/serviceatlas)
 
-Local-first **structured memory** for Claude Code over MCP — hybrid retrieval (vector KNN + BM25 fused with **Reciprocal Rank Fusion**), local embeddings, recency-decay ranking, dedup guard. No API keys; nothing leaves the machine.
+AI SRE knowledge compiler — turns a codebase into source-grounded runbooks, dependency / blast-radius maps, observability-gap reports, and PR reliability-impact analysis.
 
-`MCP` · `sqlite-vec` · `Hybrid Retrieval` · `Local Embeddings`
+`Python` · `LLM` · `Reliability` · `Runbooks`
 
 </td>
 </tr>
@@ -105,7 +121,7 @@ Local-first **structured memory** for Claude Code over MCP — hybrid retrieval 
 
 ### 🌱 Now
 
-- Building **eval-first AI tooling** — repeatable scenarios > manual inspection
+- Building **eval-first AI tooling** — repeatable scenarios > manual inspection, and **validating the judges themselves** (cross-model bias measurement)
 - Maintaining **Awesome AI Application Engineer** — a practical roadmap for Chinese developers learning production LLM apps
 - Exploring **MCP** as a substrate for SRE / on-call workflows
 - Open to chat about: production LLM systems, RAG quality, agent evals, MCP, AI infra
